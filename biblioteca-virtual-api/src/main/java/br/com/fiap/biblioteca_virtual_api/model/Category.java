@@ -1,4 +1,4 @@
-package br.com.fiap.finance_walk_api.model;
+package br.com.fiap.biblioteca_virtual_api.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.fiap</groupId>
-	<artifactId>finance-walk-api</artifactId>
+	<artifactId>biblioteca-virtual-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>finance-walk-api</name>
-	<description>API do SaaS de controle de gastos pessoais</description>
+	<name>biblioteca-virtual-api</name>
+	<description>API do SaaS de controle de livros</description>
 	<url/>
 	<licenses>
 		<license/>

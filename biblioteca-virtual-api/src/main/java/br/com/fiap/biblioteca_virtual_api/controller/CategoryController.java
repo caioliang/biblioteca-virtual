@@ -1,4 +1,4 @@
-package br.com.fiap.finance_walk_api.controller;
+package br.com.fiap.biblioteca_virtual_api.controller;
 
 import java.util.List;
 
@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import br.com.fiap.finance_walk_api.model.Category;
-import br.com.fiap.finance_walk_api.repository.CategoryRepository;
+import br.com.fiap.biblioteca_virtual_api.model.Category;
+import br.com.fiap.biblioteca_virtual_api.repository.CategoryRepository;
 import jakarta.validation.Valid;
 
 @RestController

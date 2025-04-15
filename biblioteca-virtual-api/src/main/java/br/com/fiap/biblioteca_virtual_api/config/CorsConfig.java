@@ -1,4 +1,4 @@
-package br.com.fiap.finance_walk_api.config;
+package br.com.fiap.biblioteca_virtual_api.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

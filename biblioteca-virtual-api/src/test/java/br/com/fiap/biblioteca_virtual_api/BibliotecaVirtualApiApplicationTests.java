@@ -1,10 +1,10 @@
-package br.com.fiap.finance_walk_api;
+package br.com.fiap.biblioteca_virtual_api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class FinanceWalkApiApplicationTests {
+class BibliotecaVirtualApiApplicationTests {
 
 	@Test
 	void contextLoads() {
