@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,10 +24,11 @@ import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/categories")
+@Slf4j
 // @CrossOrigin(origins = "http://localhost:3000")
 public class CategoryController {
 
-    private Logger log = LoggerFactory.getLogger(getClass());
+    // private Logger log = LoggerFactory.getLogger(getClass());
     @Autowired // injeção de dependência
     private CategoryRepository repository;
 
