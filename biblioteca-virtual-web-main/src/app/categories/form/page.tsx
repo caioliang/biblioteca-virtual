@@ -29,11 +29,11 @@ export default function CategoryFormPage() {
 
             <main className="flex justify-center">
                 <div className="bg-slate-900 m-4 p-4 rounded min-w-2/3 ">
-                    <h2 className="text-xl font-semibold mb-4">Cadastrar Categoria</h2>
+                    <h2 className="text-xl font-semibold mb-4">Cadastrar Livro</h2>
 
                     <form action={formAction} className="space-y-4">
                         <div>
-                            <Input name="name" placeholder="nome da categoria" defaultValue={state?.values.name} />
+                            <Input name="name" placeholder="nome do livro" defaultValue={state?.values.name} />
                             <span className="text-sm text-destructive">
                                 {state?.errors.name}
                             </span>
