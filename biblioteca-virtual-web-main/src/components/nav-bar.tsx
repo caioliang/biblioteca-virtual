@@ -10,7 +10,7 @@ export default function NavBar(props: NavBarProps) {
 
     const links = [
         { label: "dashboard", href: "/dashboard" },
-        { label: "review", href: "/transactions" },
+        { label: "review", href: "/review" },
         { label: "prateleira", href: "/categories" },
     ]
 

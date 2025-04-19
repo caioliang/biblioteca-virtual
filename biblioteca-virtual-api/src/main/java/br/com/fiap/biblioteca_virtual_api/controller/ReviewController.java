@@ -1,4 +1,4 @@
-package br.com.fiap.biblioteca_virtual_api.config;
+package br.com.fiap.biblioteca_virtual_api.controller;
 
 import java.math.BigDecimal;
  import java.time.LocalDate;
@@ -13,28 +13,28 @@ import java.math.BigDecimal;
  import org.springframework.web.bind.annotation.RequestParam;
  import org.springframework.web.bind.annotation.RestController;
  
- import br.com.fiap.biblioteca_virtual_api.model.Transaction;
- import br.com.fiap.biblioteca_virtual_api.repository.TransactionRepository;
+ import br.com.fiap.biblioteca_virtual_api.model.Review;
+ import br.com.fiap.biblioteca_virtual_api.repository.ReviewRepository;
  import lombok.extern.slf4j.Slf4j;
  
  @RestController
- @RequestMapping("/transactions")
+ @RequestMapping("/reviews")
  @Slf4j
- public class TransactionController {
+ public class ReviewController {
  
-     record TransactionFilter(String description, LocalDate date, BigDecimal amount){}
+     record ReviewFilter(String description, LocalDate date, BigDecimal amount){}
  
      @Autowired
-     private TransactionRepository repository;
+     private ReviewRepository repository;
  
      @GetMapping
-     public List<Transaction> index(TransactionFilter filter){
-         log.info("Buscando transações com descrição {} e data {}", filter.description(), filter.date());
- 
-         var probe = Transaction.builder()
+
+     public List<Review> index(ReviewFilter filter){
+         log.info("Buscando transações com descrição {} e data {}", filter.description, filter.date);
+         var probe = Review.builder()
                          .description(filter.description)
                          .date(filter.date())
-                         .amount(filter.amount())
+                         .note(filter.amount())
                          .build();
  
          var matcher = ExampleMatcher.matchingAll()
@@ -45,6 +45,7 @@ import java.math.BigDecimal;
         var example = Example.of(probe, matcher);
  
          return repository.findAll(example);
+
      }
      
  }

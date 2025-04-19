@@ -13,8 +13,8 @@ import java.math.BigDecimal;
  import jakarta.validation.constraints.NotBlank;
  import jakarta.validation.constraints.NotNull;
  import jakarta.validation.constraints.PastOrPresent;
- import jakarta.validation.constraints.Positive;
- import lombok.AllArgsConstructor;
+import jakarta.validation.constraints.PositiveOrZero;
+import lombok.AllArgsConstructor;
  import lombok.Builder;
  import lombok.Data;
  import lombok.NoArgsConstructor;
@@ -24,7 +24,7 @@ import java.math.BigDecimal;
  @Builder
  @NoArgsConstructor
  @AllArgsConstructor
- public class Transaction {
+ public class Review {
      
      @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
      private Long id;
@@ -32,8 +32,8 @@ import java.math.BigDecimal;
      @NotBlank(message = "campo obrigatório")
      private String description;
  
-     @Positive(message = "deve ver positivo")
-     private BigDecimal amount;
+     @PositiveOrZero(message = "deve ver positivo")
+     private BigDecimal note;
  
      @PastOrPresent(message = "não pode ser no futuro")
      private LocalDate date;
@@ -44,6 +44,6 @@ import java.math.BigDecimal;
  
      @NotNull
      @Enumerated(EnumType.STRING)
-     private TransactionType type;
+     private ReviewType type;
  
  }

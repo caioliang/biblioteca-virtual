@@ -2,9 +2,9 @@ package br.com.fiap.biblioteca_virtual_api.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
  
- import br.com.fiap.biblioteca_virtual_api.model.Transaction;
+ import br.com.fiap.biblioteca_virtual_api.model.Review;
  
- public interface TransactionRepository extends JpaRepository<Transaction, Long> {
+ public interface ReviewRepository extends JpaRepository<Review, Long> {
  
      //List<Transaction> findByDescriptionContainingIgnoringCase(String description); //Query Method
  
