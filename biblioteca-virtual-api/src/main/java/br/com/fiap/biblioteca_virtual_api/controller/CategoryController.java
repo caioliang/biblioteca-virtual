@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
@@ -22,10 +23,13 @@ import org.springframework.web.server.ResponseStatusException;
 
 import br.com.fiap.biblioteca_virtual_api.model.Category;
 import br.com.fiap.biblioteca_virtual_api.repository.CategoryRepository;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/categories")
+@CacheConfig(cacheNames = "categories")
 @Slf4j
 // @CrossOrigin(origins = "http://localhost:3000")
 public class CategoryController {
@@ -33,15 +37,20 @@ public class CategoryController {
     // private Logger log = LoggerFactory.getLogger(getClass());
     @Autowired // injeção de dependência
     private CategoryRepository repository;
-
     @GetMapping
-    @Cacheable("categories")
+    @Cacheable
+    @Operation(
+        summary = "Lista todas as categorias",
+        description = "Retorna uma lista com todas as categorias cadastradas de um Usuário",
+        tags = { "Category"}
+        )
     public List<Category> index() {
         return repository.findAll();
     }
 
     @PostMapping
     @CacheEvict(allEntries = true)
+    @Operation(responses = @ApiResponse(responseCode = "400"))
     @ResponseStatus(HttpStatus.CREATED)
     public Category create(@RequestBody @Valid Category category) {
         log.info("Cadastrando categoria " + category.getName());
@@ -49,13 +58,16 @@ public class CategoryController {
     }
 
     @GetMapping("{id}")
+    @CacheEvict(
+        allEntries = true)
     public Category get(@PathVariable Long id) {
         log.info("Buscando categoria " + id);
         return getCategory(id);
     }
 
     @DeleteMapping("{id}")
-    @CacheEvict(allEntries = true)
+    @CacheEvict( 
+        allEntries = true)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void destroy(@PathVariable Long id) {
         log.info("Apagando categoria " + id);
