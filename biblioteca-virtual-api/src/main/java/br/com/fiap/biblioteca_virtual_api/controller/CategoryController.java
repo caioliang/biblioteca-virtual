@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,11 +35,13 @@ public class CategoryController {
     private CategoryRepository repository;
 
     @GetMapping
+    @Cacheable("categories")
     public List<Category> index() {
         return repository.findAll();
     }
 
     @PostMapping
+    @CacheEvict(allEntries = true)
     @ResponseStatus(HttpStatus.CREATED)
     public Category create(@RequestBody @Valid Category category) {
         log.info("Cadastrando categoria " + category.getName());
@@ -51,6 +55,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("{id}")
+    @CacheEvict(allEntries = true)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void destroy(@PathVariable Long id) {
         log.info("Apagando categoria " + id);
@@ -58,6 +63,7 @@ public class CategoryController {
     }
 
     @PutMapping("{id}")
+    @CacheEvict(allEntries = true)
     public Category update(@PathVariable Long id, @RequestBody Category category) {
         log.info("Atualizando categoria " + id + " " + category);
 
