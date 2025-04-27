@@ -22,7 +22,7 @@ import java.math.BigDecimal;
  @Slf4j
  public class ReviewController {
  
-     record ReviewFilter(String description, LocalDate date, BigDecimal amount){}
+     record ReviewFilter(String description, LocalDate date, BigDecimal note){}
  
      @Autowired
      private ReviewRepository repository;
@@ -30,11 +30,11 @@ import java.math.BigDecimal;
      @GetMapping
 
      public List<Review> index(ReviewFilter filter){
-         log.info("Buscando transações com descrição {} e data {}", filter.description, filter.date);
+         log.info("Buscando reviews com descrição {} e data {}", filter.description, filter.date);
          var probe = Review.builder()
                          .description(filter.description)
                          .date(filter.date())
-                         .note(filter.amount())
+                         .note(filter.note())
                          .build();
  
          var matcher = ExampleMatcher.matchingAll()
@@ -44,7 +44,7 @@ import java.math.BigDecimal;
  
         var example = Example.of(probe, matcher);
  
-         return repository.findAll(example);
+        return repository.findAll(example);
 
      }
      
