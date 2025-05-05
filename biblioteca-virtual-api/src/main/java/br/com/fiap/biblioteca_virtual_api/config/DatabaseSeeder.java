@@ -72,7 +72,7 @@ public class DatabaseSeeder {
             userRepository.saveAll(List.of(
                 User.builder()
                     .email("caioliang2@gmail.com")
-                    .password(passwordEncoder.encode("12345"))
+                    .password(passwordEncoder.encode("isso1"))
                     .role(UserRole.ADMIN)
                     .build(),
                 User.builder()
