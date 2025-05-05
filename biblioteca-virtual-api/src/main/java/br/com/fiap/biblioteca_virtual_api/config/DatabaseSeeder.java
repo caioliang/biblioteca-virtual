@@ -8,12 +8,16 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import br.com.fiap.biblioteca_virtual_api.model.Category;
 import br.com.fiap.biblioteca_virtual_api.model.Review;
 import br.com.fiap.biblioteca_virtual_api.model.ReviewType;
+import br.com.fiap.biblioteca_virtual_api.model.User;
+import br.com.fiap.biblioteca_virtual_api.model.UserRole;
 import br.com.fiap.biblioteca_virtual_api.repository.CategoryRepository;
 import br.com.fiap.biblioteca_virtual_api.repository.ReviewRepository;
+import br.com.fiap.biblioteca_virtual_api.repository.UserRepository;
 import jakarta.annotation.PostConstruct;
 
 @Configuration
@@ -25,7 +29,13 @@ public class DatabaseSeeder {
     @Autowired
     private ReviewRepository reviewRepository;
     
+    @Autowired
+    private UserRepository userRepository;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    // @Autowired
     @PostConstruct
     public void init(){
             var categories = List.of(
@@ -58,6 +68,21 @@ public class DatabaseSeeder {
                 );
 
             reviewRepository.saveAll(reviews);
+
+            userRepository.saveAll(List.of(
+                User.builder()
+                    .email("caioliang2@gmail.com")
+                    .password(passwordEncoder.encode("12345"))
+                    .role(UserRole.ADMIN)
+                    .build(),
+                User.builder()
+                    .email("celina.alcantra@gmail.com")
+                    .password(passwordEncoder.encode("123456"))
+                    .role(UserRole.USER)
+                    .build()
+                  
+                )
+            );
             }
         }
 
